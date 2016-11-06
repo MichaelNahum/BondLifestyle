@@ -29,13 +29,10 @@ app.get("/garments", function(req, res){
 });
 
 app.get("/garments/:name", function(req, res){
-  var data = {
-    name: req.params.name,
-    price: 500
-  }
-
+Garment.findOne({name: req.params.name}).then(function(garment){
   res.render("garments-show",{
-    garment: data
+    garment: garment
+   });
   });
 });
 
