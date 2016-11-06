@@ -1,8 +1,10 @@
 var express = require("express");
 var hbs     = require("express-handlebars");
-var db      = require("./db/connection");
+var mongoose      = require("./db/connection");
 
 var app     = express();
+
+var Garment = mongoose.model("Garment");
 
 app.set("view engine", "hbs");
 app.engine(".hbs", hbs({
@@ -19,14 +21,23 @@ app.get("/", function(req, res){
 });
 
 app.get("/garments", function(req, res){
-  res.render("garments-index", {
-    garments: db.garments
+  Garment.find({}).then(function(candidates){
+    res.render("garments-index", {
+      garments: garments
+    });
   });
 });
 
-// app.get("/garments/:name", function(req, res){
-//   res.render("")
-// })
+app.get("/garments/:name", function(req, res){
+  var data = {
+    name: req.params.name,
+    price: 500
+  }
+
+  res.render("garments-show",{
+    garment: data
+  });
+});
 
 app.listen(3001, function(){
 console.log("This building needs to be at least three times bigger.");
