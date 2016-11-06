@@ -1,0 +1,11 @@
+<h2> {{garments.length}} items of clothing</h2>
+
+{{#each garments as |garment|}}
+<h3>Would you like to buy a <a href="/garments/{{garment.name}}">{{garment.name}}?</a>
+
+</h3>
+
+<p>
+  It costs ${{garment.price}}.00
+</p>
+{{/each}}
