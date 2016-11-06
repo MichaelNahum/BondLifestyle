@@ -1,8 +1,8 @@
-var express = require("express");
-var hbs     = require("express-handlebars");
+var express       = require("express");
+var parser        = require("body-parser");
+var hbs           = require("express-handlebars");
 var mongoose      = require("./db/connection");
-
-var app     = express();
+var app           = express();
 
 var Garment = mongoose.model("Garment");
 
@@ -15,6 +15,7 @@ app.engine(".hbs", hbs({
 }));
 
 app.use("/assets", express.static("public"));
+app.use(parser.urlencoded({extended: true}));
 
 app.get("/", function(req, res){
   res.render("app-welcome");
@@ -34,6 +35,10 @@ Garment.findOne({name: req.params.name}).then(function(garment){
     garment: garment
    });
   });
+});
+
+app.post("/garments", function(req, res){
+  res.json(req.body);
 });
 
 app.listen(3001, function(){
