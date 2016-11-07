@@ -21,25 +21,43 @@ app.get("/", function(req, res){
   res.render("app-welcome");
 });
 
+app.get("/garments/:name", function(req, res){
+  Garment.findOne({name: req.params.name}).then(function(garment){
+    res.render("garments-show",{
+      garment: garment
+    });
+  });
+});
+
 app.get("/garments", function(req, res){
-  Garment.find({}).then(function(candidates){
+  Garment.find({}).then(function(garments){
     res.render("garments-index", {
       garments: garments
     });
   });
 });
 
-app.get("/garments/:name", function(req, res){
-Garment.findOne({name: req.params.name}).then(function(garment){
-  res.render("garments-show",{
-    garment: garment
-   });
+app.post("/garments/:name/delete", function(req, res){
+  Garment.findOneAndRemove({name: req.params.name}).then(function(){
+    res.redirect("/garments")
   });
 });
 
-app.post("/garments", function(req, res){
-  res.json(req.body);
+app.post("/garments/:name", function(req, res){
+  Garment.findOneAndUpdate({name: req.params,name}, req.body.garment, {new: true})
+    res.redirect("/garments" + garment.name);
 });
+
+
+app.post("/garments", function(req, res){
+Garment.create(req.body.garment).then(function(garment){
+  res.redirect("/garments/" + garment.name);
+  });
+});
+
+
+
+app.post("")
 
 app.listen(3001, function(){
 console.log("This building needs to be at least three times bigger.");

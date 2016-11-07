@@ -1,1 +1,13 @@
+{{#unless garment}}
+<h2>Those garments are above your station, peon.</h2>
+{{else}}
 <h2>Behold this {{garment.name}}, which costs ${{garment.price}}, you peasant.</h2>
+<form method="post" action="/garments/{{garment.name}}/delete">
+  <button type="submit">Shred</button>
+</form>
+<form action="/garments/{{garment.name}}" method="post">
+  <input type="text" name="garment[name]" placeholder="Name" value="{{garment.name}}">
+  <input type="number" name="garment[price]" placeholder="Price" value="{{garment.price}}">
+  <button type="submit">Edit Item Description</button>
+</form>
+{{/unless}}
