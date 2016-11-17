@@ -18,7 +18,7 @@ app.use("/assets", express.static("public"));
 app.use(parser.urlencoded({extended: true}));
 
 app.get("/", function(req, res){
-  res.render("app-welcome");
+  res.redirect("/garments");
 });
 
 app.get("/garments/:name", function(req, res){
@@ -44,16 +44,17 @@ app.post("/garments/:name/delete", function(req, res){
 });
 
 app.post("/garments/:name", function(req, res){
-  Garment.findOneAndUpdate({name: req.params,name}, req.body.garment, {new: true})
-    res.redirect("/garments" + garment.name);
+  Garment.findOneAndUpdate({name: req.params.name}, req.body.garment, {new: true}).then(function(garment){
+    res.redirect("/garments/" + garment.name);
+  });
 });
-
 
 app.post("/garments", function(req, res){
 Garment.create(req.body.garment).then(function(garment){
   res.redirect("/garments/" + garment.name);
   });
 });
+
 
 
 app.post("")
