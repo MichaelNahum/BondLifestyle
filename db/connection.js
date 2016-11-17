@@ -7,5 +7,6 @@ var GarmentSchema = new mongoose.Schema(
 );
 
 mongoose.model("Garment", GarmentSchema);
+mongoose.Promise = global.Promise;
 mongoose.connect("mongodb://localhost/bondlifestyle");
 module.exports = mongoose;

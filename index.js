@@ -56,7 +56,6 @@ Garment.create(req.body.garment).then(function(garment){
 });
 
 
-
 app.post("")
 
 app.listen(3001, function(){
