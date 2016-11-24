@@ -8,6 +8,19 @@
 <form action="/garments/{{garment.name}}" method="post">
   <input type="text" name="garment[name]" placeholder="Name" value="{{garment.name}}">
   <input type="number" name="garment[price]" placeholder="Price" value="{{garment.price}}">
-  <button type="submit">Edit Item Description</button>
+  <button type="submit">Edit Description</button>
 </form>
+  {{#each garment.tags as |tag index|}}
+  <p>{{tag}}</p>
+  <form action="/garments/{{../garment.name}}/tags/{{index}}" method="post">
+    <button type="submit">Un-tag</button>
+  </form>
+  {{/each}}
+
+<form action="/garments/{{garment.name}}/tags" method="post">
+  <textarea name="tag"></textarea>
+  <button type="submit">Add a tag</button>
+</form>
+
 {{/unless}}
+<h3><a href="/garments">Back</a></h3>

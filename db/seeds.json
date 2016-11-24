@@ -1,8 +1,11 @@
 [
 {"name": "blue suit",
-"price": 500 },
+"price": 500,
+"tags": ["wool", "formalwear"] },
 {"name": "white shirt",
-"price": 100 },
+"price": 100,
+"tags": ["cotton", "busines casual"] },
 {"name": "unicorn dress",
-"price": 800}
+"price": 800,
+"tags": ["alpaca", "weird shit"]}
 ]

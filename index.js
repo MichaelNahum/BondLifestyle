@@ -55,9 +55,23 @@ Garment.create(req.body.garment).then(function(garment){
   });
 });
 
+app.post("/garments/:name/tags", function(req, res){
+  Garment.findOne({name: req.params.name}).then(function(garment){
+    garment.tags.push(req.body.tag);
+    garment.save().then(function(){
+      res.redirect("/garments/" + garment.name);
+    });
+  });
+});
 
-
-app.post("")
+app.post("/garments/:name/tags/:index", function(req, res){
+  Garment.findOne({name: req.params.name}).then(function(garment){
+    garment.tags.splice(req.params.index, 1);
+    garment.save().then(function(){
+      res.redirect("/garments/" + garment.name);
+    });
+  });
+});
 
 app.listen(3001, function(){
 console.log("This building needs to be at least three times bigger.");
