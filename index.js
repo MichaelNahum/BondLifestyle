@@ -7,7 +7,7 @@ var app           = express();
 var Garment = mongoose.model("Garment");
 
 app.set("view engine", "hbs");
-app.set("port", process.env.PORT || 3001)
+app.set("port", process.env.PORT || 3001);
 app.engine(".hbs", hbs({
   extname:        ".hbs",
   partialsDir:    "views/",
