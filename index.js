@@ -7,6 +7,7 @@ var app           = express();
 var Garment = mongoose.model("Garment");
 
 app.set("view engine", "hbs");
+app.set("port", process.env.PORT || 3001)
 app.engine(".hbs", hbs({
   extname:        ".hbs",
   partialsDir:    "views/",
@@ -73,6 +74,6 @@ app.post("/garments/:name/tags/:index", function(req, res){
   });
 });
 
-app.listen(3001, function(){
+app.listen(app.get("port"), function(){
 console.log("This building needs to be at least three times bigger.");
 });
