@@ -1,3 +1,21 @@
 h1{
   text-align: center;
 }
+h3{
+  padding: 1em;
+  margin: 1em;
+  border: 1px solid black;
+}
+a, a:visited{
+  text-decoration: none;
+  color:black;
+}
+a:hover{
+  color: grey;
+}
+button{
+  padding:0.5em;
+  margin:0.5em;
+  background-color: white;
+  border:1px solid black;
+}

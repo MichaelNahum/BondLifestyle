@@ -1,8 +1,9 @@
 <h2> {{garments.length}} items of clothing</h2>
 
 {{#each garments as |garment|}}
-<h3>Would you like to buy a <a href="/garments/{{garment.name}}">{{garment.name}}?</a></h3>
+<h3>Would you like to buy a <a href="/garments/{{garment.name}}">{{garment.name}}?</a>
 <p>It costs ${{garment.price}}.00</p>
+</h3>
 {{/each}}
 
 <form action="/garments" method="post">
